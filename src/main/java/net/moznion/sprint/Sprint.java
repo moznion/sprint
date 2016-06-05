@@ -1,14 +1,16 @@
 package net.moznion.sprint;
 
-import lombok.Data;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Sprint {
-    private static Map<String, List<Appender>> appendersMap = new ConcurrentHashMap<>();
+    private static final Map<String, List<Appender>> APPENDERS_MAP = new ConcurrentHashMap<>();
+
+    /**
+     * Flag value to decide to use cache or not.
+     */
+    public boolean useCache = true;
 
     /**
      * Format and build string according to template.
@@ -24,40 +26,15 @@ public class Sprint {
      * @return Formatted string
      */
     public String ff(final String template, final Object... args) {
-        List<Appender> appenders = appendersMap.get(template);
-        if (appenders == null) {
-            final List<Term> terms = parseTemplate(template);
-            appenders = new ArrayList<>();
-            for (final Term term : terms) {
-                final Appender appender;
-                if (term.isPlaceholder) {
-                    appender = new Appender() {
-                        @Override
-                        public StringBuilder append(StringBuilder sb, Object obj) {
-                            return sb.append(obj);
-                        }
-
-                        @Override
-                        public boolean isPlaceholder() {
-                            return true;
-                        }
-                    };
-                } else {
-                    appender = new Appender() {
-                        @Override
-                        public StringBuilder append(StringBuilder sb, Object obj) {
-                            return sb.append(term.content);
-                        }
-
-                        @Override
-                        public boolean isPlaceholder() {
-                            return false;
-                        }
-                    };
-                }
-                appenders.add(appender);
+        List<Appender> appenders;
+        if (useCache) {
+            appenders = APPENDERS_MAP.get(template);
+            if (appenders == null) {
+                appenders = AppendersBuilder.buildAppenders(TemplateParser.parseTemplate(template));
+                APPENDERS_MAP.put(template, appenders);
             }
-            appendersMap.put(template, appenders);
+        } else {
+            appenders = AppendersBuilder.buildAppenders(TemplateParser.parseTemplate(template));
         }
 
         int argIndex = 0;
@@ -73,59 +50,5 @@ public class Sprint {
         }
 
         return sb.toString();
-    }
-
-    private List<Term> parseTemplate(final String template) {
-        final List<Term> terms = new ArrayList<>();
-
-        boolean isCurlOpened = false;
-        StringBuilder sb = new StringBuilder();
-
-        for (final char c : template.toCharArray()) {
-            if (isCurlOpened) {
-                if (c == '}') {
-                    terms.add(new Term("{}", true));
-                    isCurlOpened = false;
-                    continue;
-                }
-                sb.append('{');
-            }
-
-            if (c == '{') {
-                terms.add(new Term(sb.toString(), false));
-                sb = new StringBuilder();
-
-                isCurlOpened = true;
-                continue;
-            }
-
-            isCurlOpened = false;
-            sb.append(c);
-        }
-
-        if (isCurlOpened) {
-            sb.append('{');
-        }
-
-        terms.add(new Term(sb.toString(), false));
-
-        return terms;
-    }
-
-    @Data
-    private static class Term {
-        private String content;
-        private boolean isPlaceholder;
-
-        public Term(String content, boolean isPlaceholder) {
-            this.content = content;
-            this.isPlaceholder = isPlaceholder;
-        }
-    }
-
-    private interface Appender {
-        StringBuilder append(StringBuilder sb, Object obj);
-
-        boolean isPlaceholder();
     }
 }
