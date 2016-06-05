@@ -8,8 +8,8 @@
     <packaging>jar</packaging>
 
     <name>sprint</name>
-    <description></description>
-    <url></url>
+    <description>Fluent, small and fast String formatter for Java</description>
+    <url>https://github.com/moznion/sprint</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -168,9 +168,9 @@
     </distributionManagement>
 
     <scm>
-        <url></url>
-        <connection>scm:git:</connection>
-        <developerConnection>scm:git:</developerConnection>
+        <url>https://github.com/moznion/sprint</url>
+        <connection>scm:git:git@github.com:moznion/sprint.git</connection>
+        <developerConnection>scm:git:git@github.com:moznion/sprint.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
