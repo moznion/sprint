@@ -1,7 +1,7 @@
 sprint
 =============
 
-Fluent and fast String formatter for Java.
+Fluent, small and fast String formatter for Java.
 
 Synopsis
 ---
@@ -29,6 +29,23 @@ Benchmark
 ---
 
 Benchmark script is [here](./devel/Bench.java).
+
+### n=10000
+
+```
+Score:
+
+sprintff:  0 wallclock secs ( 0.01 usr +  0.00 sys =  0.01 CPU) @ 798977.31/s (n=10000)
+stringFormat:  0 wallclock secs ( 0.11 usr +  0.01 sys =  0.13 CPU) @ 77924.71/s (n=10000)
+
+Comparison chart:
+
+                    Rate  sprintff  stringFormat
+      sprintff  798977/s        --          925%
+  stringFormat   77925/s      -90%            --
+```
+
+### n=100000
 
 ```
 Score:
