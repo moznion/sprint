@@ -60,6 +60,8 @@ Comparison chart:
   stringFormat   197785/s      -83%            --
 ```
 
+![benchmark_graph](./devel/benchmark.png)
+
 Author
 --
 
