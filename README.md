@@ -24,8 +24,8 @@ this method formats String according to fluent (or loose?) template like `"{}:{}
 This method takes arguments after template and fill those into placeholder.
 
 This method parses template __only at once__.
-Parsed structure is stored on map which is contained in instance of Sprint,
-and it formats String with using these parsed structures from the second time
+Parsed structure is stored on ConcurrentHashMap which is contained in Sprint class as static.
+When it formats String with the same template, it uses pre-parsed structures from the second time.
 
 Benchmark
 ---------
