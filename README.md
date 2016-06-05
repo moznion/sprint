@@ -1,6 +1,8 @@
 sprint
 ======
 
+[![Build Status](https://travis-ci.org/moznion/sprint.svg?branch=master)](https://travis-ci.org/moznion/sprint)
+
 Fluent, small and fast String formatter for Java.
 
 Synopsis
