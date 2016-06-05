@@ -28,7 +28,20 @@ and it formats String with using these parsed structures from the second time
 Benchmark
 ---
 
-TBD
+Benchmark script is [here](./devel/Bench.java).
+
+```
+Score:
+
+sprintff:  0 wallclock secs ( 0.06 usr +  0.03 sys =  0.09 CPU) @ 1143850.66/s (n=100000)
+stringFormat:  0 wallclock secs ( 0.50 usr +  0.00 sys =  0.51 CPU) @ 197784.81/s (n=100000)
+
+Comparison chart:
+
+                     Rate  sprintff  stringFormat
+      sprintff  1143851/s        --          478%
+  stringFormat   197785/s      -83%            --
+```
 
 Author
 --
