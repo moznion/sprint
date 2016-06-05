@@ -1,10 +1,10 @@
 sprint
-=============
+======
 
 Fluent, small and fast String formatter for Java.
 
 Synopsis
----
+--------
 
 ```java
 final Sprint sprint = new Sprint();
@@ -12,7 +12,7 @@ System.out.Println(sprint.ff("Hello: {}!", "John")); // => Hello: John!
 ```
 
 Description
---
+-----------
 
 sprint is a formatter for String.
 
@@ -26,9 +26,11 @@ Parsed structure is stored on map which is contained in instance of Sprint,
 and it formats String with using these parsed structures from the second time
 
 Benchmark
----
+---------
 
 Benchmark script is [here](./devel/Bench.java).
+
+![benchmark_graph](./devel/benchmark.png)
 
 ### n=10000
 
@@ -60,15 +62,18 @@ Comparison chart:
   stringFormat   197785/s      -83%            --
 ```
 
-![benchmark_graph](./devel/benchmark.png)
+TODO
+----
+
+- `sprintf` compatible template
 
 Author
---
+------
 
 moznion (<moznion@gmail.com>)
 
 License
---
+-------
 
 ```
 The MIT License (MIT)
