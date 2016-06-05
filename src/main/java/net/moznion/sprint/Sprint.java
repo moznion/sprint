@@ -3,12 +3,12 @@ package net.moznion.sprint;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Sprint {
-    private Map<String, List<Appender>> appendersMap = new HashMap<>();
+    private static Map<String, List<Appender>> appendersMap = new ConcurrentHashMap<>();
 
     /**
      * Format and build string according to template.
