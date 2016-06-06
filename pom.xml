@@ -3,7 +3,7 @@
 
     <groupId>net.moznion</groupId>
     <artifactId>sprint</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>sprint</name>
@@ -170,7 +170,7 @@
         <url>https://github.com/moznion/sprint</url>
         <connection>scm:git:git@github.com:moznion/sprint.git</connection>
         <developerConnection>scm:git:git@github.com:moznion/sprint.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>sprint-0.0.2</tag>
     </scm>
 
     <licenses>
