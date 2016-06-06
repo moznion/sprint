@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Sprint {
-    private static final Map<String, List<Appender>> APPENDERS_MAP = new ConcurrentHashMap<>();
+    private final Map<String, List<Appender>> appendersMap = new ConcurrentHashMap<>();
 
     /**
      * Flag value to decide to use cache or not.
@@ -28,10 +28,10 @@ public class Sprint {
     public String ff(final String template, final Object... args) {
         List<Appender> appenders;
         if (useCache) {
-            appenders = APPENDERS_MAP.get(template);
+            appenders = appendersMap.get(template);
             if (appenders == null) {
                 appenders = AppendersBuilder.buildAppenders(TemplateParser.parseTemplate(template));
-                APPENDERS_MAP.put(template, appenders);
+                appendersMap.put(template, appenders);
             }
         } else {
             appenders = AppendersBuilder.buildAppenders(TemplateParser.parseTemplate(template));
