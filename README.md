@@ -30,7 +30,7 @@ When it formats String with the same template, it uses pre-parsed structures fro
 Benchmark
 ---------
 
-Benchmark script is [here](./devel/Bench.java).
+Benchmark project is [here](https://github.com/moznion/sprint-bench).
 
 ![benchmark_graph](./devel/benchmark.png)
 
