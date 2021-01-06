@@ -1,7 +1,7 @@
 sprint
 ======
 
-[![Build Status](https://travis-ci.org/moznion/sprint.svg?branch=master)](https://travis-ci.org/moznion/sprint)
+![Check](https://github.com/moznion/sprint/workflows/Check/badge.svg)
 
 Fluent, small and fast String formatter for Java.
 
